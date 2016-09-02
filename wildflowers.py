@@ -6,9 +6,9 @@ import time
 
 def main():
     particle_radius = 1.
-    particle_scaler = 1.
+    particle_scaler = 0.9995
     nparticles = 3000
-    particles = dla.generate_particles(nparticles, particle_radius, particle_scaler, start_angle_range=pi/2)
+    particles = dla.generate_particles(nparticles, particle_radius, particle_scaler, start_angle_range=2*pi)
     leaves = dla.find_leaves(particles)
 
     npetals = 7
@@ -25,9 +25,9 @@ def main():
     line_width=0.1
     dwg = svg.Drawing('test.svg')
     dla.draw(particles, dwg, 
-            circles=True, links=True, 
+            circles=False, links=True, 
             circle_color='brown', link_color='green',
-            line_width=line_width,
+            line_width=line_width*2,
             prune=leaves)
     flo.draw(flowers, dwg, color='blue', line_width=line_width)
     dwg.save()
